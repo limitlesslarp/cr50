@@ -178,7 +178,7 @@ endif
 ifeq ($(H1_DEVIDS),)
 ifneq ($(PROD_BUILD_MODE),)
 CR50_RW_KEY = cr50_RW-prod-2026.04.pem.pub
-RW_SIGNER_EXTRAS += --hashes=$@.hashes --override-keyid
+RW_SIGNER_EXTRAS += --hashes=$@.hashes
 else
 # Signing with non-secret test key.
 CR50_RW_KEY = loader-testkey-A.pem
@@ -198,7 +198,6 @@ $(error cr50-codesigner is not available!)
 endif
 endif
 
-RW_SIGNER_EXTRAS += --override-keyid
 ifeq ($(USE_USB_FOB_KEY),)
 # The private key comes from Cloud KMS.
 export KMS_PKCS11_CONFIG = $(abspath chip/g/config.yaml)
