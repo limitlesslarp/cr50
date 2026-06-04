@@ -9,14 +9,28 @@ import binascii
 import os
 import struct
 
-import Crypto
-import Crypto.Hash.SHA
-import Crypto.Hash.SHA256
-import Crypto.Hash.SHA384
-import Crypto.Hash.SHA512
-from Crypto.PublicKey import RSA
-import Crypto.Signature.PKCS1_PSS
-import Crypto.Signature.PKCS1_v1_5
+
+try:
+    import Crypto
+    import Crypto.Hash.SHA
+    import Crypto.Hash.SHA256
+    import Crypto.Hash.SHA384
+    import Crypto.Hash.SHA512
+    from Crypto.PublicKey import RSA
+    import Crypto.Signature.PKCS1_PSS
+    import Crypto.Signature.PKCS1_v1_5
+except ImportError:
+    # Fallback for environments using pycryptodomex or Goobuntu which creates
+    # Cryptodome even for the pycrotodome package.
+    import Cryptodome as Crypto
+    import Cryptodome.Hash.SHA
+    import Cryptodome.Hash.SHA256
+    import Cryptodome.Hash.SHA384
+    import Cryptodome.Hash.SHA512
+    from Cryptodome.PublicKey import RSA
+    import Cryptodome.Signature.PKCS1_PSS
+    import Cryptodome.Signature.PKCS1_v1_5
+
 import rsa
 import subcmd
 

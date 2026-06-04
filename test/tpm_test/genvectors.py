@@ -6,9 +6,14 @@
 
 """Module for generating AES test vectors."""
 
+import inspect
 import os
 
-from Crypto.Cipher import AES
+
+try:
+    from Crypto.Cipher import AES
+except ModuleNotFoundError:
+    from Cryptodome.Cipher import AES
 
 
 modes = {
@@ -68,9 +73,14 @@ for mode in [AES.MODE_CBC, AES.MODE_CFB, AES.MODE_OFB]:
             iv = os.urandom(16)
             pt = os.urandom(pt_len)
 
-            obj = AES.new(key, mode=mode, IV=iv, segment_size=128)
+            kwargs = {"mode": mode, "IV": iv}
+
+            # 2. Not all mode functions accept 'segment_size'
+            if "segment_size" in inspect.signature(AES.new).parameters:
+                kwargs["segment_size"] = 128
+            obj = AES.new(key, **kwargs)
             ct = obj.encrypt(pt)
-            obj = AES.new(key, mode=mode, IV=iv, segment_size=128)
+            obj = AES.new(key, **kwargs)
 
             assert obj.decrypt(ct)[:pt_len] == pt
             print(
