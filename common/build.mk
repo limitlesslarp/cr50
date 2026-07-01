@@ -196,15 +196,22 @@ endif
 ifeq ($(TEST_BUILD),)
 
 ifeq ($(CONFIG_RMA_AUTH_USE_P256),)
-BLOB_FILE = rma_key_blob.x25519.test
+RMA_KEY_TYPE = x25519
 else
-BLOB_FILE = rma_key_blob.p256.test
+RMA_KEY_TYPE = p256
+endif
+
+ifneq ($(PROD_BUILD_MODE),)
+BLOB_FILE = rma_key_blob.$(RMA_KEY_TYPE).prod
+else
+BLOB_FILE = rma_key_blob.$(RMA_KEY_TYPE).test
 endif
 
 $(out)/RW/common/rma_auth.o: $(out)/rma_key_from_blob.h
 $(out)/RW/common/rma_auth.E: $(out)/rma_key_from_blob.h
 
-$(out)/rma_key_from_blob.h: board/$(BOARD)/$(BLOB_FILE) util/bin2h.sh
+$(out)/rma_key_from_blob.h: board/$(BOARD)/$(BLOB_FILE) util/bin2h.sh \
+	common/build.mk
 	$(Q)util/bin2h.sh RMA_KEY_BLOB $< $@
 
 endif
