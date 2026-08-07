@@ -260,7 +260,7 @@ board-y+= $(FIPS_MODULE)
 endif
 
 # Build and link with an external library
-EXTLIB := $(realpath ../../third_party/tpm2$(BRANCH_EXT))
+EXTLIB := $(realpath ./tpm2$(BRANCH_EXT))
 CFLAGS += -I$(EXTLIB)
 
 # For the benefit of the tpm2 library.

@@ -99,9 +99,9 @@ main() {
   if [[ -n ${BOARD} ]]; then
     case "${BOARD}" in
       (cr50)
-        dir_list+=( ../../third_party/tpm2${BRANCH_EXT} )
-        dir_list+=( ../pinweaver${BRANCH_EXT} )
-        dir_list+=( ../gsc-utils${BRANCH_EXT} )
+        dir_list+=( ./tpm2${BRANCH_EXT} )
+        dir_list+=( ./pinweaver${BRANCH_EXT} )
+        dir_list+=( ./gsc-utils${BRANCH_EXT} )
         ;;
       (*_fp)
         dir_list+=( ./private )

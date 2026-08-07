@@ -1,0 +1,9 @@
+[submodule "tpm2"]
+	path = tpm2
+	url = https://github.com/limitlesslarp/tpm2
+[submodule "pinweaver"]
+	path = pinweaver
+	url = https://github.com/limitlesslarp/pinweaver
+[submodule "gsc-utils"]
+	path = gsc-utils
+	url = https://github.com/limitlesslarp/gsc-utils

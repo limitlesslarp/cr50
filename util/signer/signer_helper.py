@@ -19,14 +19,31 @@ import hashlib
 import json
 import os
 import sys
+import subprocess
 
 
 ROOT_DIR = os.path.dirname(os.path.abspath(sys.argv[0]))
-sys.path.append(
-    os.path.join(ROOT_DIR, "..", "..", "..", "ti50", "common", "tools")
-)
+# sys.path.append(
+#     os.path.join(ROOT_DIR, "..", "..", "..", "ti50", "common", "tools")
+# )
 
-import common
+# import common
+
+class common():
+    class ToolsException(Exception):
+        pass
+
+    @staticmethod
+    def cmd_run(command):
+        subprocess.run(command, check=True)
+
+    @staticmethod
+    def starter(func, args):
+        try:
+            func(args)
+        except common.ToolsException as e:
+            print(e, file=sys.stderr)
+            sys.exit(1)
 
 
 def make_rc_filename(filename):
