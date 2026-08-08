@@ -1,6 +1,11 @@
 # Cr50
 Cr50 firmware, based on Chrome EC.
 
+>[!IMPORTANT]
+>now featuring new citadel RO decomp! available at [chip/citadel](chip/citadel)
+>
+![Shocked](/shocked.png)
+
 ## Compilation
 To compile, ensure you have `arm-none-eabi-gcc` installed first.
 
