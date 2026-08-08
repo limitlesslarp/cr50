@@ -110,7 +110,9 @@ SECTIONS
     /* The rest of .text sections. */
     .text.__main : {
         . = ALIGN(4);
+#ifndef CHIP_CITADEL
         STRINGIFY(OUTDIR/core/CORE/init.o) (.text)
+#endif
         *(.text*)
 #ifdef CONFIG_EXTERNAL_STORAGE
         . = ALIGN(4);

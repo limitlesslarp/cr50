@@ -7,7 +7,7 @@
 #ifndef __EC_BOARD_BOARD_ID_FEATURES_H
 #define __EC_BOARD_BOARD_ID_FEATURES_H
 
-#include "board_id.h"
+// #include "board_id.h"
 #include "registers.h"
 
 /**
@@ -47,12 +47,12 @@
  */
 static inline void store_board_id_features(uint32_t features)
 {
-#ifdef CONFIG_BOARD_ID_FEATURES
-	extern uint32_t board_id_features;
+// #ifdef CONFIG_BOARD_ID_FEATURES
+// 	extern uint32_t board_id_features;
 
-	board_id_features = features;
-#endif
-	GREG32(PMU, PWRDN_SCRATCH25) = features;
+// 	board_id_features = features;
+// #endif
+// 	GREG32(PMU, PWRDN_SCRATCH25) = features;
 }
 
 /**
@@ -61,12 +61,13 @@ static inline void store_board_id_features(uint32_t features)
  */
 static inline uint32_t get_board_cfg(void)
 {
-#ifdef CONFIG_BOARD_ID_FEATURES
-	extern uint32_t board_id_features;
-	return board_id_features;
-#else
-	return GREG32(PMU, PWRDN_SCRATCH25);
-#endif
+// #ifdef CONFIG_BOARD_ID_FEATURES
+// 	extern uint32_t board_id_features;
+// 	return board_id_features;
+// #else
+// 	return GREG32(PMU, PWRDN_SCRATCH25);
+// #endif
+return 0x00000000;
 }
 
 /**
@@ -104,7 +105,7 @@ void init_board_id_features(void);
  *   true if the board id is allowed to reset the EC.
  *   false if the board id is not allowed to reset the EC.
  */
-int bid_feature_id_resets_ec_in_recdev(const struct board_id *id);
+// int bid_feature_id_resets_ec_in_recdev(const struct board_id *id);
 
 /*
  * Checks the cached board id features to see if the chip board id is allowed
