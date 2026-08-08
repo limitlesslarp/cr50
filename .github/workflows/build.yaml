@@ -1,0 +1,28 @@
+name: build gsc image
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+jobs:
+  build:
+    strategy:
+      board: [ cr50, citadel ]
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: add deps
+      run: sudo apt update && sudo apt upgrade -y && sudo apt-get install git make pkg-config gcc-arm-none-eabi python3
+    - name: download codesigner
+      # guys I promise this is cr50 codesigner, I uploaded it to
+      # Discord using AnonymizeFileNames. If you do not trust it,
+      # you can compile the firmware yourself by following the
+      # steps in this workflow, just without downloading the codesigner.
+      run: sudo wget -O "/usr/bin/cr50-codesigner" https://files.bleood.xyz/unlisted/v1rv4hj.elf
+    - name: build image
+      run: BOARD=${{ matrix.board }} make
+    - name: Upload build files
+      uses: actions/upload-artifact@v4
+      with:
+        name: artifacts-${{ matrix.board }}
+        path: build/${{ matrix.board }}
