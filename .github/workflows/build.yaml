@@ -13,7 +13,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: add deps
-      run: sudo apt update && sudo apt upgrade -y && sudo apt-get install git make pkg-config gcc-arm-none-eabi python3
+      run: sudo apt update && sudo apt upgrade -y && sudo apt-get install git make pkg-config gcc-arm-none-eabi python3 libusb-1.0-0-dev libftdi-dev
     - name: download codesigner
       run: sudo wget -O "/usr/bin/cr50-codesigner" https://files.bleood.xyz/unlisted/v1rv4hj.elf
     - name: build image
