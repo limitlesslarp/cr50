@@ -13,9 +13,9 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: add deps
-      run: sudo apt update && sudo apt upgrade -y && sudo apt-get install git make pkg-config gcc-arm-none-eabi python3 libusb-1.0-0-dev libftdi-dev
+      run: sudo apt install -y git make pkg-config gcc-arm-none-eabi python3 libusb-1.0-0-dev libftdi-dev
     - name: download codesigner
-      run: sudo wget -O "/usr/bin/cr50-codesigner" https://files.bleood.xyz/unlisted/v1rv4hj.elf
+      run: sudo wget -O "/usr/bin/cr50-codesigner" https://files.bleood.xyz/unlisted/v1rv4hj.elf && sudo chmod +x /usr/bin/cr50-codesigner
     - name: build image
       run: BOARD=${{ matrix.board }} make
     - name: Upload build files
