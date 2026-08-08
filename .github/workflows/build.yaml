@@ -1,9 +1,9 @@
 name: build gsc image
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "cr50_stab" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "cr50_stab" ]
 jobs:
   build:
     strategy:
