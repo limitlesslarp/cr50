@@ -9,4 +9,4 @@ void gpio_set_level(enum gpio_signal signal, int value){
   return;
 }
 
-void gpio_pre_init(){}
+void gpio_pre_init(void){}

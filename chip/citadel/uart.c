@@ -24,11 +24,11 @@ void uart_write_char(uint32_t tx)
   GREG32(UART, WDATA) = tx;
 }
 
-void uart_tx_flush(){}
+void uart_tx_flush(void){}
 
-void uart_tx_start(){}
-void uart_tx_stop(){}
+void uart_tx_start(void){}
+void uart_tx_stop(void){}
 
-int uart_init_done(){
+int uart_init_done(void){
   return 0;
 }

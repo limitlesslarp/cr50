@@ -22,4 +22,7 @@ If you find something that is inaccurate or doesn't match what you
 know, please feel free to make a Pull Request!
 
 Thanks!
+
+Notice: I give full permission for this code to be reused and rewritten
+in any way as long as there is credit given to this repository (https://github.com/limitlesslarp/cr50).
 -->
